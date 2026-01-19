@@ -58,17 +58,7 @@ def main():
     # Initialize UI
     app = VPNApp(vpn_client)
     
-    # Update UI Server List from the fetched data
-    # We need to adapt the GUI to accept this dynamic list structure
-    # (The current GUI expects the old config.py structure, but 'vpn_gate_fetcher' returns:
-    # {'ip':..., 'host':..., 'country':..., 'config_base64':...})
-    # We should normalize this.
-    
-    # Re-map servers to what GUI expects? 
-    # vpn_gate_fetcher returns keys: 'ip', 'host', 'country', 'speed', 'score', 'config_base64'
-    # gui.py expects: s['location'], s['ip']
-    
-    # Let's fix the list for GUI
+    # Normalize server data for GUI consistency
     formatted_servers = []
     for s in servers:
         # If it's a local file, we might want special display
@@ -84,18 +74,8 @@ def main():
     # Inject into config-like structure or just pass to client/app
     vpn_client.servers = formatted_servers
     
-    # We need to refresh the GUI dropdown. 
-    # Since we create App *after*, let's pass a dummy list first?
-    # Actually, `VPNApp` reads `SERVER_LIST` from `config` directly?
-    # Checking `gui.py`: `from config import SERVER_LIST`.
-    
-    # We need to update the instance variable in valid `app`
-    # Updating app to take `formatted_servers` if provided.
-    
-    # But `VPNApp` constructor takes `vpn_client` but *uses* global `SERVER_LIST`.
-    # I should change `gui.py` to use `vpn_client.servers`.
-    
-    app.update_server_list(formatted_servers) # I will add this method to gui.py
+    # Update UI with the final server list
+    app.update_server_list(formatted_servers)
     
     app.mainloop()
     
