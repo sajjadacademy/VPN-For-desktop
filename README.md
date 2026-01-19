@@ -1,6 +1,6 @@
-# Anti-Gravity VPN
+# Sajjad VPN
 
-Anti-Gravity VPN is a robust, Python-based desktop VPN application designed for simplicity and versatility. It aggregates VPN servers from multiple sources, ensuring you always have a reliable connection option.
+Sajjad VPN is a robust, Python-based desktop VPN application designed for simplicity and versatility. It aggregates VPN servers from multiple sources, ensuring you always have a reliable connection option.
 
 ## Features
 
